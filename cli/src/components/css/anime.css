@@ -2,12 +2,15 @@
   display: flex;
   justify-content: space-evenly
 }
+.anime-galery-left-arrow-box{
+  position: absolute;
+  top: 20vw;
+  right: 1vw;
+}
 .anime-galery-left-arrow {
   color: rgba(0, 0, 168, 0.521);
   border-radius: 10em;
-  margin: 20vw -90vw 0 0;
   font-size: clamp(0.5rem, 3vw, 50px);
-  position: absolute;
   border: solid 1px rgb(43, 205, 226);
 }
 .anime-galery-left-arrow:hover {
@@ -100,12 +103,15 @@
     display: grid;
     justify-items: center;
   }
+  .anime-galery-left-arrow-box {
+    top: 110vw;
+    position:absolute;
+    right: auto;
+  }
   .anime-galery-left-arrow {
     color: rgba(0, 0, 168, 0.521);
     border-radius: 10em;
     font-size: 10vw;
-    top: 110vw;
-    position:absolute;
     margin: 0;
     border: solid 1px rgb(43, 205, 226);
   }

@@ -25,7 +25,9 @@ const AnimeDetail = (prop) => {
                         <div className="synopsis-text">
                             {prop.synopsis}
                         </div>
-                        <div className="synopsis-more">Continuar lendo</div>
+                        <div className="synopsis-more">
+                            Continuar lendo
+                        </div>
                     </div>
                     <span style={{backgroundColor:scoreColor(parseFloat(prop.score))}} className="score">{prop.score}</span>
                 </div>

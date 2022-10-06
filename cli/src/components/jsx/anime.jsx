@@ -14,6 +14,7 @@ const Anime = () => {
   const showModal = () => setModal(true)
 
   const getAnime = async() => {
+    setLoad(false)
     await fetch(`https://kitsu.io/api/edge/anime/${sortId(5000)}`)
     .then((res) => res.json())
     .then((data) => setTimeout(() => {
@@ -50,7 +51,7 @@ const Anime = () => {
           <img  src={animeImage} />
           <span id="secundary-card-text" className="anime-title">{!anime.canonicalTitle? "Carregando..." : anime.canonicalTitle }</span>
         </div>
-        <div onClick={getAnime}>
+        <div className="anime-galery-left-arrow-box" onClick={getAnime}>
           <BsArrowRightSquareFill className="anime-galery-left-arrow"/>
         </div>
       </div>
