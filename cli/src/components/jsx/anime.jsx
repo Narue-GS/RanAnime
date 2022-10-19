@@ -6,6 +6,7 @@ import AnimeDetail from "./animeDetail"
 const Anime = () => {
   const [anime, setData] = React.useState("");
   const [animeImage, setImage] = React.useState(null);
+  const [animeId, setId] = React.useState("")
   const [loaded, setLoad] = React.useState(false)
   const [modal, setModal] = React.useState(false)  
   const sortId = (n) => {
@@ -20,6 +21,7 @@ const Anime = () => {
     .then((data) => setTimeout(() => {
       setData(data.data.attributes)
       setImage(data.data.attributes.posterImage.medium)
+      setId(data.data.id)
       setTimeout(() => {
         setLoad(true)
       }, 500);
@@ -56,7 +58,7 @@ const Anime = () => {
         </div>
       </div>
       <div style={!modal? {display:"none"}:{}}>
-        <AnimeDetail text={anime.canonicalTitle} image={animeImage} synopsis={anime.synopsis} score={anime.averageRating}/>
+        <AnimeDetail animeId={animeId} text={anime.canonicalTitle} image={animeImage} synopsis={anime.synopsis} score={anime.averageRating}/>
       </div>
     </>
   ); 

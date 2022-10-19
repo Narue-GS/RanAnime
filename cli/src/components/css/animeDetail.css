@@ -91,6 +91,10 @@
     padding: 2%;
     border-radius: 0.5vw;
 }
+.anime-score-box {
+    display:flex;
+    justify-content: space-between;
+}
 @keyframes seeMore {
     from {
         background-color: rgb(54,54,54);
