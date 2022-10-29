@@ -15,5 +15,4 @@ const SortAnime = () => {
         </>
     )
 }
-
 export default SortAnime;

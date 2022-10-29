@@ -1,14 +1,16 @@
 .modal{
-    width: 100%;
+    width: 90%;
     display: flex;
     padding: 2% 0 2% 0;
     justify-content: center;
     position: absolute;
+    animation-name: showModal;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 }
 .modal-content {
     display: grid;
     grid-template-columns: 33.33% 66.67%;
-    padding: 1vw;
     width: 95%;
     height: auto;
     background-color: rgb(22,22,22);
@@ -47,22 +49,6 @@
     max-height: 270px;
     border-radius: 0.5vw;
     font-size: clamp(1rem, 2vw, 20px);
-    margin-bottom: 3vw;
-}
-.synopsis-more {
-    animation-name: seeMore;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    width: 100%;
-    text-align: center;
-    background-color: rgb(54,54,54);
-    color:blueviolet;
-    font-size: clamp(0.5rem, 1.5vw, 20px);
-    border-radius: 0.5em;
-    margin-top:0.5em;
-    font-weight: 900;
-    padding: 0.5vw 0 0.5em 0;
 }
 .synopsis-text {
     padding: 1vw;
@@ -94,14 +80,52 @@
 .anime-score-box {
     display:flex;
     justify-content: space-between;
+    height: 3em;
+    margin-top: 3vw;
 }
-@keyframes seeMore {
+.evaluationForm {
+    justify-content: center;
+    text-align: center;
+    padding: 1vw;
+    border-radius: 0.5vw;
+    flex-direction: column;
+    background-color: rgb(44,44,44);
+}
+.evaluate-button {
+    background-color: rgb(43, 205, 226);
+    border:none;
+    border-radius: 0.5vw;
+    padding: 1vw;
+    height: 3.5em;
+    margin: 0 1vw;
+}
+.evaluate-button:hover {
+    animation-name: evaluateHover;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+}
+.close-modal {
+    position: absolute;
+    right: 1vw;
+    top: 1vw;
+    font-size: 3em;
+}
+
+@keyframes showModal {
+    from {opacity: 0%;}
+    to {opacity: 100%;}
+}
+
+@keyframes evaluateHover {
     from {
+        transform: scale(1);
+      }
+      to {
+        color: rgba(43, 205, 226, 0.788);
         background-color: rgb(54,54,54);
-    }
-    to {
-        background-color: rgb(50,50,50);
-    }
+        box-shadow: 7px 7px 7px rgba(255, 0, 0, 0.445), 11px 11px 11px rgba(0, 4, 255, 0.445); 
+        transform: scale(1.1);
+      }
 }
 
 @media screen and (max-width:600px){
