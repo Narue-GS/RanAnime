@@ -23,8 +23,6 @@ const AnimeDetail = (prop) => {
         let input = document.getElementById("evaluateInput");
         setEvaluation(input.valueAsNumber)
     }
-    let limit = 0
-    
     const postRequest = async() => {
 
         await fetch("http://127.0.0.1:3001/api/evaluate",{
@@ -38,8 +36,8 @@ const AnimeDetail = (prop) => {
         }).then(res => res.json())
         .then(data =>{prop.setAverage(data.response)})
         
-
     }
+    const closeModal = () => prop.setModal(false)
     React.useEffect(() => {
       }, []);
     return(
@@ -71,7 +69,7 @@ const AnimeDetail = (prop) => {
                     </div>
                 </div>
             </div>
-            <div className="close-modal">
+            <div onClick={closeModal} className="close-modal">
                 <FaWindowClose/>
             </div>
         </div>

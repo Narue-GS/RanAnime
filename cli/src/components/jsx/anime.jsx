@@ -78,7 +78,7 @@ const Anime = () => {
         </div>
       </div>
       <div style={!modal? {display:"none"}:{}}>
-        <AnimeDetail setAverage={setAverage} average={average} evaluations={evaluations} id={animeId} name={anime.canonicalTitle} image={animeImage} synopsis={anime.synopsis}/>
+        <AnimeDetail setModal={setModal} setAverage={setAverage} average={average} evaluations={evaluations} id={animeId} name={anime.canonicalTitle} image={animeImage} synopsis={anime.synopsis}/>
       </div>
     </>
   ); 

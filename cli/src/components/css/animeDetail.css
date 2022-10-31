@@ -109,6 +109,12 @@
     right: 1vw;
     top: 1vw;
     font-size: 3em;
+    color: rgb(43, 205, 226,4);
+}
+.close-modal:hover {
+    animation-name: closeHover;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
 }
 
 @keyframes showModal {
@@ -128,6 +134,13 @@
       }
 }
 
+@keyframes closeHover {
+    from {}
+    to {
+        color: rgb(0, 0, 79);
+        transform: scale(1.2);
+    }
+}
 @media screen and (max-width:600px){
     .modal-content {
         display: flex;
