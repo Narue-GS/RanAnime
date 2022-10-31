@@ -1,15 +1,16 @@
 .modal{
-    width: 100%;
     display: flex;
     padding: 2% 0 2% 0;
     justify-content: center;
     position: absolute;
+    animation-name: showModal;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 }
 .modal-content {
     display: grid;
     grid-template-columns: 33.33% 66.67%;
-    padding: 1vw;
-    width: 95%;
+    width: 90%;
     height: auto;
     background-color: rgb(22,22,22);
     box-shadow: 0px 0px 11px 7px rgba(255, 0, 0, 0.74), 0px 0px 7px 11px rgba(0, 4, 255, 0.664);
@@ -27,11 +28,11 @@
     font-size: 2em;
     color: aliceblue;
     padding: 1vw;
-    background-color: rgb(44,44,44);
+    margin: 1vw
 }
 
 .modal-content .column-1 .title {
-    font-size: clamp(1rem, 2vw + 0.75em, 30px);
+    font-size: clamp(0.5rem, 2vw + 0.75em, 30px);
     
 }
 .modal-content .column-2 {
@@ -43,26 +44,11 @@
     background-color: rgb(44,44,44);
     box-shadow: 7px 7px 7px rgba(255, 0, 0, 0.445), 11px 11px 11px rgba(0, 4, 255, 0.445);  
     padding: 1vw;
+    margin: 1vw;
     height: auto;
     max-height: 270px;
     border-radius: 0.5vw;
     font-size: clamp(1rem, 2vw, 20px);
-    margin-bottom: 3vw;
-}
-.synopsis-more {
-    animation-name: seeMore;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    width: 100%;
-    text-align: center;
-    background-color: rgb(54,54,54);
-    color:blueviolet;
-    font-size: clamp(0.5rem, 1.5vw, 20px);
-    border-radius: 0.5em;
-    margin-top:0.5em;
-    font-weight: 900;
-    padding: 0.5vw 0 0.5em 0;
 }
 .synopsis-text {
     padding: 1vw;
@@ -90,17 +76,100 @@
     background-color: rgb(44,44,44);
     padding: 2%;
     border-radius: 0.5vw;
+    height: auto;
 }
-@keyframes seeMore {
+.anime-score-box {
+    display:flex;
+    justify-content: space-between;
+    height: 3em;
+    margin-top: 3vw;
+    padding: 1vw;
+}
+.evaluation-box {
+    display: flex;
+    flex-direction: row;
+}
+.evaluation-form {
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    padding: 0.5vw;
+    border-radius: 0.5vw;
+    flex-direction: column;
+    animation-name: showForm;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards; 
+}
+.evaluate-button {
+    background-color: rgb(43, 205, 226);
+    border:none;
+    border-radius: 0.5vw;
+    padding: 1vw;
+    height: 3.5em;
+    text-align: center;
+    width: 100%;
+}
+.evaluate-button:hover {
+    animation-name: evaluateHover;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+}
+.close-modal {
+    position: absolute;
+    right: 1vw;
+    top: 1vw;
+    font-size: 3em;
+    color: rgb(43, 205, 226,4);
+}
+.close-modal:hover {
+    animation-name: closeHover;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes showModal {
+    from {opacity: 0%;}
+    to {opacity: 100%;}
+}
+
+@keyframes evaluateHover {
     from {
+        transform: scale(1);
+      }
+      to {
+        color: rgba(43, 205, 226, 0.788);
         background-color: rgb(54,54,54);
+        box-shadow: 7px 7px 7px rgba(255, 0, 0, 0.445), 11px 11px 11px rgba(0, 4, 255, 0.445); 
+        transform: scale(1.1);
+      }
+}
+
+@keyframes closeHover {
+    from {}
+    to {
+        color: rgb(0, 0, 79);
+        transform: scale(1.2);
+    }
+}
+
+@keyframes showForm {
+    from {
+        background-color: rgb(88,88,88);
     }
     to {
-        background-color: rgb(50,50,50);
+        background-color: rgb(44,44,44);
+    }
+}
+@media screen and (max-width: 900px) {
+    .modal-content .column-2 .synopsis {
+        box-shadow: none;
     }
 }
 
 @media screen and (max-width:600px){
+    .modal {
+        max-height: 110vh;
+    }
     .modal-content {
         display: flex;
         flex-direction: column;
@@ -112,5 +181,19 @@
     }
     .modal-content .column-1 {
         background-color: rgb(22,22,22);
+    }
+    .modal-content .column-2 .synopsis {
+        box-shadow: none;
+    }
+    .evaluation-box {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .close-modal {
+        position: absolute;
+        right: 5%;
+        top: -1vw;
+        font-size: 3em;
+        color: red;
     }
 }

@@ -50,14 +50,6 @@
     font-size: clamp(0.5rem, 2vw, 20px);
 }
 
-.sort-confirm button:hover {
-    animation-name: none;
-    color: aqua;
-    border: 1px white solid;
-    transform: scale(1.5);
-    box-shadow: 7px 7px 7px rgba(255, 0, 0, 0.445), 11px 11px 11px rgba(0, 4, 255, 0.445);
-}
-
 @keyframes callToClick {
     from {
         box-shadow: none;

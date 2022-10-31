@@ -6,31 +6,53 @@ import AnimeDetail from "./animeDetail"
 const Anime = () => {
   const [anime, setData] = React.useState("");
   const [animeImage, setImage] = React.useState(null);
-  const [loaded, setLoad] = React.useState(false)
-  const [modal, setModal] = React.useState(false)  
+  const [evaluations, setEvaluation] = React.useState({});
+  const [average, setAverage] = React.useState(0.00);
+  const [animeId, setId] = React.useState("");
+  const [loaded, setLoad] = React.useState(false);
+  const [modal, setModal] = React.useState(false);
   const sortId = (n) => {
     return parseInt(Math.random()*n)
   }
-  const showModal = () => setModal(true)
-
+  const showModal = () =>{
+    setModal(true)
+    checkAnimeInDB()
+  }
+  const checkAnimeInDB = async() =>{
+    const checkBody = {id: animeId, image: animeImage, synopsis:anime.synopsis, name:anime.canonicalTitle, evaluations:evaluations}
+    await fetch("http://127.0.0.1:3001/api/getAnime",{
+    method: "POST",
+    mode:'cors',
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-type':'application/json',
+    },
+    body: JSON.stringify(checkBody)
+    })  .then(res => res.json())
+        .then(data =>{setAverage(data.response)})
+}
   const getAnime = async() => {
     setLoad(false)
     await fetch(`https://kitsu.io/api/edge/anime/${sortId(5000)}`)
     .then((res) => res.json())
     .then((data) => setTimeout(() => {
-      setData(data.data.attributes)
-      setImage(data.data.attributes.posterImage.medium)
-      setTimeout(() => {
-        setLoad(true)
-      }, 500);
+      if(data.data != undefined){
+        setData(data.data.attributes)
+        setEvaluation(data.data.attributes.ratingFrequencies);
+        setImage(data.data.attributes.posterImage.medium)
+        setId(data.data.id)
+        setTimeout(() => {
+          setLoad(true)
+        }, 500)} else {
+          getAnime();
+        }      
     }, 1500))
+    
   }
   // posterImage.medium
   
   React.useEffect(() => {
-    if(anime == ""){
-      getAnime()
-    }
+    getAnime()
   }, []);
  
   return (
@@ -56,7 +78,7 @@ const Anime = () => {
         </div>
       </div>
       <div style={!modal? {display:"none"}:{}}>
-        <AnimeDetail text={anime.canonicalTitle} image={animeImage} synopsis={anime.synopsis} score={anime.averageRating}/>
+        <AnimeDetail setModal={setModal} setAverage={setAverage} average={average} evaluations={evaluations} id={animeId} name={anime.canonicalTitle} image={animeImage} synopsis={anime.synopsis}/>
       </div>
     </>
   ); 
