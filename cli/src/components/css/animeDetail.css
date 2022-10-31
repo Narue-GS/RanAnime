@@ -1,5 +1,4 @@
 .modal{
-    width: 90%;
     display: flex;
     padding: 2% 0 2% 0;
     justify-content: center;
@@ -11,7 +10,7 @@
 .modal-content {
     display: grid;
     grid-template-columns: 33.33% 66.67%;
-    width: 95%;
+    width: 90%;
     height: auto;
     background-color: rgb(22,22,22);
     box-shadow: 0px 0px 11px 7px rgba(255, 0, 0, 0.74), 0px 0px 7px 11px rgba(0, 4, 255, 0.664);
@@ -29,11 +28,11 @@
     font-size: 2em;
     color: aliceblue;
     padding: 1vw;
-    background-color: rgb(44,44,44);
+    margin: 1vw
 }
 
 .modal-content .column-1 .title {
-    font-size: clamp(1rem, 2vw + 0.75em, 30px);
+    font-size: clamp(0.5rem, 2vw + 0.75em, 30px);
     
 }
 .modal-content .column-2 {
@@ -45,6 +44,7 @@
     background-color: rgb(44,44,44);
     box-shadow: 7px 7px 7px rgba(255, 0, 0, 0.445), 11px 11px 11px rgba(0, 4, 255, 0.445);  
     padding: 1vw;
+    margin: 1vw;
     height: auto;
     max-height: 270px;
     border-radius: 0.5vw;
@@ -76,20 +76,29 @@
     background-color: rgb(44,44,44);
     padding: 2%;
     border-radius: 0.5vw;
+    height: auto;
 }
 .anime-score-box {
     display:flex;
     justify-content: space-between;
     height: 3em;
     margin-top: 3vw;
-}
-.evaluationForm {
-    justify-content: center;
-    text-align: center;
     padding: 1vw;
+}
+.evaluation-box {
+    display: flex;
+    flex-direction: row;
+}
+.evaluation-form {
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    padding: 0.5vw;
     border-radius: 0.5vw;
     flex-direction: column;
-    background-color: rgb(44,44,44);
+    animation-name: showForm;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards; 
 }
 .evaluate-button {
     background-color: rgb(43, 205, 226);
@@ -97,7 +106,8 @@
     border-radius: 0.5vw;
     padding: 1vw;
     height: 3.5em;
-    margin: 0 1vw;
+    text-align: center;
+    width: 100%;
 }
 .evaluate-button:hover {
     animation-name: evaluateHover;
@@ -141,7 +151,25 @@
         transform: scale(1.2);
     }
 }
+
+@keyframes showForm {
+    from {
+        background-color: rgb(88,88,88);
+    }
+    to {
+        background-color: rgb(44,44,44);
+    }
+}
+@media screen and (max-width: 900px) {
+    .modal-content .column-2 .synopsis {
+        box-shadow: none;
+    }
+}
+
 @media screen and (max-width:600px){
+    .modal {
+        max-height: 110vh;
+    }
     .modal-content {
         display: flex;
         flex-direction: column;
@@ -153,5 +181,19 @@
     }
     .modal-content .column-1 {
         background-color: rgb(22,22,22);
+    }
+    .modal-content .column-2 .synopsis {
+        box-shadow: none;
+    }
+    .evaluation-box {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .close-modal {
+        position: absolute;
+        right: 5%;
+        top: -1vw;
+        font-size: 3em;
+        color: red;
     }
 }
